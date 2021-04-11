@@ -74,3 +74,20 @@ h3{
 	margin-top:10%;
 	color:gray;
 }
+#master table tr .columns{
+	margin:0;
+	padding:0;
+}
+#master table tr .columns .column{
+	margin:0;
+	padding:0;
+}
+#master table thead tr{
+	background-color: #F0F0F0;
+}
+#master columns div .favorites{
+	border: 1px solid #F0F0F0;
+}
+#master div .fave columns{
+	margin:0;
+}
