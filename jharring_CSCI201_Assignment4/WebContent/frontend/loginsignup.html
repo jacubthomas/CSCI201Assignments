@@ -14,7 +14,7 @@
 			<div class="level-left"><strong><span style="color:white">SalStocks</span></strong></div>
 		</div>
 		<div class="navbar-end">
-	        <div class="buttons">
+	        <div id="nav_buttons" class="buttons">
 		          <a id="hs_btn" class="button" style="background-color:#6100FF;"
 		           onclick="window.location.href='index.html';">
 		          	Home/Search
@@ -24,6 +24,30 @@
 		      	  </a>
 	        </div>
 	     </div>
+	</nav>
+	<nav id="navigator_user" class="navbar level hidden">
+		<div class="navbar-brand nav">
+			<div class="level-left"><strong><span style="color:white">SalStocks</span></strong></div>
+		</div>
+		<div class="navbar-end">
+	        <div class="buttons">
+		          <a id="user_hs_btn" class="button" style="background-color:#6100FF;">
+		          	Home/Search
+		          </a>
+		          <a id="user_f_btn" class="button" style="background-color:#6100FF;"
+		          	onclick="window.location.href='favorites.html';">
+		        	Favorites
+		      	  </a>
+		      	  <a id="user_p_btn" class="button" style="background-color:#6100FF;"
+		          	onclick="window.location.href='portfolio.html';">
+		        	Portfolio
+		      	  </a>
+		      	  <a id="user_lo_btn" class="button" style="background-color:#6100FF;"
+		          	onclick="window.location.href='index.html'; window.localStorage.clear();">
+		        	Logout
+		      	  </a>
+	        </div>
+       </div>
 	</nav>
 	<div id="master" class="container">
 		<div class="columns is-centered">
@@ -75,11 +99,14 @@
 					    <input name="su_confirm" id="su_c_pass" class="input" type="password">
 					  </div>
 					</div>
-					<button class="button is-fullwidth is-danger">Create Account</button>
+					<br>
+					<button type="button" onClick = "register(); window.location.href='index.html'"
+					class="button is-fullwidth is-danger">Create Account</button>
 				</form>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="navbar.js"></script>
+	<script type="text/javascript" src="register.js"></script>
 </body>
 </html>

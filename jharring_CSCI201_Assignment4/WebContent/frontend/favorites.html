@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-<title>SalStocks: Login/Signup</title>
+<title>SalStocks: Favorites</title>
 </head>
 <body>
 	<nav id="navigator" class="navbar level">
@@ -25,21 +25,21 @@
 	        </div>
        </div>
 	</nav>
-	<nav id="navigator_user" class="navbar level hidden">
+	<nav id="navigator_user" class="navbar level">
 		<div class="navbar-brand nav">
 			<div class="level-left"><strong><span style="color:white">SalStocks</span></strong></div>
 		</div>
 		<div class="navbar-end">
 	        <div class="buttons">
-		          <a id="user_hs_btn" class="button" style="background-color:#6100FF;">
+		          <a id="user_hs_btn" class="button" style="background-color:#6100FF;"
+		          onclick="window.location.href='index.html';">
 		          	Home/Search
 		          </a>
-		          <a id="user_f_btn" class="button" style="background-color:#6100FF;"
-		          	onclick="window.location.href='favorites.html';">
+		          <a id="user_f_btn" class="button" style="background-color:#6100FF;">
 		        	Favorites
 		      	  </a>
 		      	  <a id="user_p_btn" class="button" style="background-color:#6100FF;"
-		          	onclick="window.location.href='portfolio.html';">
+		      	  onclick="window.location.href='portfolio.html';">
 		        	Portfolio
 		      	  </a>
 		      	  <a id="user_lo_btn" class="button" style="background-color:#6100FF;"
@@ -51,14 +51,8 @@
 	</nav>
 	<div id="master" class="container">
 		<div class="columns">
-			<div class="column"></div>
-			<div class="logo column is-two-fifths is-centered">
-				<h1> Stock Search </h1>
-				<form id="searchform" class="form-group fg--search">
-					<input class="searchbox" type=text placeholder="Enter stock ticker">
-					<button type="submit" class="fas fa-search search"></button>
-				</form>
-			</div>
+			<div class="column is-3"></div>
+			<h3 class="column is-centered">My Favorites</h3>
 			<div class="column"></div>
 		</div>
 	</div>
