@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+<title>SalStocks: Portfolio</title>
+</head>
+<body>
+	<nav id="navigator" class="navbar level">
+		<div class="navbar-brand nav">
+			<div class="level-left"><strong><span style="color:white">SalStocks</span></strong></div>
+		</div>
+		<div class="navbar-end">
+	        <div class="buttons">
+		          <a id="hs_btn" class="button" style="background-color:#6100FF;">
+		          	Home/Search
+		          </a>
+		          <a id="ls_btn" class="button" style="background-color:#6100FF;"
+		          	onclick="window.location.href='loginsignup.html';">
+		        	Login/Signup
+		      	  </a>
+	        </div>
+       </div>
+	</nav>
+	<nav id="navigator_user" class="navbar level">
+		<div class="navbar-brand nav">
+			<div class="level-left"><strong><span style="color:white">SalStocks</span></strong></div>
+		</div>
+		<div class="navbar-end">
+	        <div class="buttons">
+		          <a id="user_hs_btn" class="button" style="background-color:#6100FF;"
+		          onclick="window.location.href='index.html';">
+		          	Home/Search
+		          </a>
+		          <a id="user_f_btn" class="button" style="background-color:#6100FF;"
+		          	onclick="window.location.href='favorites.html';">
+		        	Favorites
+		      	  </a>
+		      	  <a id="user_p_btn" class="button" style="background-color:#6100FF;">
+		        	Portfolio
+		      	  </a>
+		      	  <a id="user_lo_btn" class="button" style="background-color:#6100FF;"
+		          	onclick="window.location.href='index.html'; window.localStorage.clear();">
+		        	Logout
+		      	  </a>
+	        </div>
+       </div>
+	</nav>
+	<div id="master" class="container">
+		<div class="columns">
+			<div class="column is-2"></div>
+			<h3 class="column is-centered">My Portfolio</h3>
+			<div class="column"></div>
+		</div>
+		<div class="columns">
+			<div class="column is-2" style="margin:0%; margin-left:3%;"></div>
+			<p class="column is-centered" style="padding:0%;">Cash Balance: ...</p>
+			<div class="column"></div>
+		</div>
+		<div class="columns">
+			<div class="column is-2" style="margin:0%; margin-left:3%; margin-bottom:3%;"></div>
+			<p class="column is-centered" style="padding:0%;">Total Account Value: ...</p>
+			<div class="column"></div>
+		</div>
+		<div class="columns">
+			<div class="column is-2" style="margin:0%;"></div>
+			<div class="table-container column">
+				<table class="table is-fullwidth is-bordered is-striped">
+					<thead> 
+						<tr>
+						<th><span style="font-size:Large; font-weight:600;">AAPL</span> Apple Inc.</th>
+						</tr>
+					</thead>
+					<tbody> 
+						<tr>
+							<td>
+								<div class="columns">
+									<div class="column is-one-fourth">Quantity:</div>
+									<div class="column is-one-fourth">Change:</div>
+								</div>
+								<div class="columns">
+									<div class="column is-one-fourth">Avg. Cost / Share:</div>
+									<div class="column is-one-fourth">Current Price:</div>
+								</div>
+								<div class="columns">
+									<div class="column is-one-fourth">Total Cost:</div>
+									<div class="column is-one-fourth">Market Value:</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr class="override">
+							<td class="box has-text-centered" style="box-shadow:none; background-color:#F0F0F0; border-radius: 0px;"> 
+								<div class="columns">
+									<div class="column"></div>
+									<div class="column">Quantity <input type="number" id="quantity" name="quantity" min="1" max="10000"></div>
+									<div class="column"></div>
+								</div>
+								<div class="columns">
+									<div class="column"></div>
+									<div class="column is-4 control">
+										<label class="radio">
+										<input type="radio" name="buy">
+										   Buy
+										  </label>
+										  <label class="radio">
+										    <input type="radio" name="sell">
+										    Sell
+										  </label>
+										</div>
+									<div class="column"></div>
+								</div>
+								<div class="columns">
+									<div class="column"></div>
+									<div class="column">
+										<button type="submit" class="is-light">Submit</button>
+									</div>
+									<div class="column"></div>
+								</div>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div class="column is-2"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="navbar.js"></script>
+</body>
+</html>
