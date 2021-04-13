@@ -1,6 +1,6 @@
 function login(){
-    var username = document.getElementById('lgn_user').value
-	var password = document.getElementById('lgn_pass').value
+    var username = document.getElementById('lgn_user').value;
+	var password = document.getElementById('lgn_pass').value;
     if(!(username && password)){
 		alert("Please fill out all fields.")
 		return

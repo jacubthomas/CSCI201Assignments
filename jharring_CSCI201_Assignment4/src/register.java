@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/register")
 public class register extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2;
 
 	@SuppressWarnings("resource")
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
