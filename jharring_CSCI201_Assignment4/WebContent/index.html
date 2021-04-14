@@ -61,18 +61,18 @@
 			</div>
 			<div class="column"></div>
 		</div>
-		<div class="columns" style="margin-top:150px;">
+		<div id="result_contain" class="columns hidden" style="margin-top:150px;">
 			<div class="column is-1"></div>
 			<div class="column">
 				<div class="columns">
-					<div class="column is-pulled-left"><span style="font-size:x-large; font-weight:700;">WMG</span></div>
+					<div class="column is-pulled-left"><span id="result_ticker"style="font-size:x-large; font-weight:700;"></span></div>
 					<div class="column is-pulled-right">
 						<span style="font-size:x-large; font-weight:700;float:right; color:red;">2067.59</span>
 					</div>
 				</div>
 				<div class="columns">
 					<div class="column is-pulled-left">
-						<span style="font-size:large; font-weight:500;">Warner Music Group Corp - Class A</span>
+						<span id="result_name" style="font-size:large; font-weight:500;"></span>
 					</div>
 					<div class="column is-pulled-right">
 						<span style="font-size:large; font-weight:500;float:right; color:red;">-0.64(-1.86)%</span>
@@ -80,18 +80,18 @@
 				</div>
 				<div class="columns">
 					<div class="column is-pulled-left">
-						<p>Nasdaq</p>
+						<p id="result_exchange"></p>
 					</div> 
 					<div class="column has-text-right">
 						<p>2021-04-01 08:15:47</p>
 					</div>
 				</div>
 				<div class="columns">
-					<div class="column is-pulled-left form-group">
-						<label>Quantity: 
+					<div class="column is-pulled-left form-group level">
+						<label class="level-item level-left">Quantity: 
 							<input type="number" name="quantity">
-						</label>
 						<button class="button is-success">Buy</button>
+						</label>
 					</div>
 				</div>
 				<div class="columns">
@@ -107,52 +107,62 @@
 				<hr style="border: solid 1px #6100FF;">
 				<div class="columns">
 					<div class="column is-one-half">
-						High Price:
+						<p style="float:left">High Price:</p>
+						<p id="request_high" style="float:right"></p>
 					</div>
 					<div class="column is-one-half">
-						Mid Price:
-					</div>
-				</div>
-				<div class="columns">
-					<div class="column is-one-half">
-						Low Price:
-					</div>
-					<div class="column is-one-half">
-						Ask Price:
+						<p style="float:left">Mid Price:</p>
+						<p id="request_mid" style="float:right"></p>
 					</div>
 				</div>
 				<div class="columns">
 					<div class="column is-one-half">
-						Open Price:
+						<p style="float:left">Low Price:</p>
+						<p id="request_low" style="float:right"></p>
 					</div>
 					<div class="column is-one-half">
-						Ask Size:
-					</div>
-				</div>
-				<div class="columns">
-					<div class="column is-one-half">
-						Prev. Close:
-					</div>
-					<div class="column is-one-half">
-						Bid Price:
+						<p style="float:left">Ask Price:</p>
+						<p id="request_ap" style="float:right"></p>
 					</div>
 				</div>
 				<div class="columns">
 					<div class="column is-one-half">
-						Volume: 
+						<p style="float:left">Open Price:</p>
+						<p id="request_op"style="float:right"></p>
 					</div>
 					<div class="column is-one-half">
-						Bid Size:
+						<p style="float:left">Ask Size:</p>
+						<p id="request_as" style="float:right"></p>
+					</div>
+				</div>
+				<div class="columns">
+					<div class="column is-one-half">
+						<p style="float:left">Prev. Close:</p>
+						<p id="request_pc" style="float:right"></p>
+					</div>
+					<div class="column is-one-half">
+						<p style="float:left">Bid Price:</p>
+						<p id="request_bp" style="float:right"></p>
+					</div>
+				</div>
+				<div class="columns">
+					<div class="column is-one-half">
+						<p style="float:left">Volume:</p>
+						<p id="request_volume"style="float:right"></p>
+					</div>
+					<div class="column is-one-half">
+						<p style="float:left">Bid Size:</p>
+						<p id="request_bs" style="float:right"></p>
 					</div>
 				</div>
 				<div class="column has-text-centered">
 					<span style="font-size:large;font-weight:500;">Company's Description </span>
 				</div>
 				<div class="column has-text-left">
-					<p> Start Date: 2020-06-03</p>
+					<p id="result_start"></p>
 				</div>
 				<div class="column">
-					<p> With a legacy extending back over 200 years, Warner Music Group (WMG) today brings together artists, songwriters and entrepreneurs that are moving entertainment culture across the globe. Operating in more than 70 countries through a network of affiliates and licensees, WMG’s Recorded Music division includes renowned labels such as Asylum, Atlantic, Big Beat, Canvasback, Elektra, Erato, First Night, Fueled by Ramen, Nonesuch, Parlophone, Reprise, Rhino, Roadrunner, Sire, Spinnin’, Warner Records, Warner Classics and Warner Music Nashville. WMG’s music publishing arm, Warner Chappell Music, has a catalog of more than 1.4 million musical compositions spanning every musical genre, from the standards of the Great American Songbook to the biggest hits of the 21st century. Warner Music Group is also home to ADA, the independent artist and label services company, as well as consumer brands such as Songkick, the live music app; EMP, the merchandise e-tailer; and UPROXX, the youth culture destination.</p>
+					<p id="result_description"></p>
 				</div>
 				
 			</div>
