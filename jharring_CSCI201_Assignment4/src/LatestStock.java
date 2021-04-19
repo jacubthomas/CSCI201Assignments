@@ -6,6 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -80,6 +86,41 @@ public class LatestStock extends HttpServlet {
 				if(stock.bid_price == -1.0)
 					bidprice = "-";
 				else bidprice = stock.bid_price.toString();
+				DecimalFormat df = new DecimalFormat("#.##");
+				
+				Double change = stock.last - stock.prev_close;
+				change = Double.parseDouble(df.format(change));
+				Double change_percent = (change*100)/stock.prev_close;
+				change_percent = Double.parseDouble(df.format(change_percent));
+				
+				String marketopen = "Open";
+				Date now;
+				try {
+					Date date = new SimpleDateFormat("yyyy-MM-dd").parse(stock.date_timestamp.substring(1,11));
+					now = new Date();
+					String str_now = new SimpleDateFormat("yyyy-MM-dd").format(now);
+					now = new SimpleDateFormat("yyyy-MM-dd").parse(str_now);
+					
+					System.out.println("date: " + date + ", now: " + now);
+					if(date.compareTo(now) == 0) {
+						String stock_date = stock.date_timestamp.substring(12);
+						now = new Date();
+						str_now = new SimpleDateFormat("HH:mm:ss").format(now);
+						System.out.println("st_ts: " + stock_date + ", now_ts: " + str_now);
+						if(!stock_date.substring(0,2).equalsIgnoreCase(str_now.substring(0,2))) {
+							marketopen = "Closed";
+						} else if(!stock_date.substring(3,4).equalsIgnoreCase(str_now.substring(3,4))) {
+							marketopen =  "Closed";
+						}
+					} else marketopen =  "Closed";
+					now = new Date();
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				now = new Date();
+				String strDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(now);
+				
+				
 				
 				out.println("{");
 				out.println("\"CID\":" + CID + ",");
@@ -94,7 +135,11 @@ public class LatestStock extends HttpServlet {
 				out.println("\"low_price\":" + "\"" + stock.low_price + "\",");
 				out.println("\"last\":" + "\"" + stock.last + "\",");
 				out.println("\"volume\":" + "\"" +  stock.volume + "\",");
-				out.println("\"date_timestamp\":" + stock.date_timestamp);
+				out.println("\"change\":" + "\"" + change + "\",");
+				out.println("\"change_percent\":" + "\"" +  change_percent + "\",");
+				out.println("\"market_status\":" + "\"" + marketopen + "\",");
+				out.println("\"date_timestamp\":" + stock.date_timestamp + ",");
+				out.println("\"current_timestamp\":" + "\""+ strDate + "\"");
 				out.println("}");
 				out.flush();
 		}catch(SQLException sqle) {

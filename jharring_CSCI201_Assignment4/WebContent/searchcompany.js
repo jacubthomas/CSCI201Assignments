@@ -34,6 +34,14 @@ function searchComp(){
 	volume.innerText="";
 	let bs = document.getElementById("request_bs");
 	bs.innerText="";
+	let lp = document.getElementById("request_last");
+	lp.innerText="";
+	let chng = document.getElementById("request_change");
+	chng.innerText="";
+	let cur_ts = document.getElementById("current_timestamp");
+	cur_ts.innerText="";
+	let market = document.getElementById("market");
+	market.innerText="";
 	
 	 fetch('http://localhost:8080/jharring_CSCI201_Assignment4/company?' + new URLSearchParams({
 		Ticker: ticker
@@ -79,47 +87,63 @@ function searchComp(){
             var latestData = JSON.parse(response) 
             console.log(latestData)
 			
-			//let high = document.getElementById("request_high");
 			txt = document.createTextNode(latestData.high_price);
 			high.appendChild(txt);
 			
-			//let mid = document.getElementById("request_mid");
-			txt = document.createTextNode(latestData.mid_price);
-			mid.appendChild(txt);
-			
-			//let low = document.getElementById("request_low");
 			txt =  document.createTextNode(latestData.low_price);
 			low.appendChild(txt);
-			
-			//let ap = document.getElementById("request_ap");
-			txt = document.createTextNode(latestData.ask_price);
-			ap.appendChild(txt);
-			
-			//let op =  document.getElementById("request_op");
+		
 			txt = document.createTextNode(latestData.open);
 			op.appendChild(txt);
 			
-			//let as = document.getElementById("request_as");
-			txt = document.createTextNode(latestData.ask_size);
-			as.appendChild(txt);
-			
-			//let pc = document.getElementById("request_pc");
 			txt = document.createTextNode(latestData.prev_close);
 			pc.appendChild(txt);
 			
-			//let bp = document.getElementById("request_bp");
-			txt =  document.createTextNode(latestData.bid_price);
-			bp.appendChild(txt);
-			
-			//let volume = document.getElementById("request_volume");
 			txt = document.createTextNode(latestData.volume);
 			volume.appendChild(txt);
 			
-			//let bs = document.getElementById("request_bs");
-			txt =  document.createTextNode(latestData.bid_size);
-			bs.appendChild(txt);
+			txt = document.createTextNode(latestData.last);
+			lp.appendChild(txt);
 			
-			let dateTime = latestData.date_timestamp;
+			txt = document.createTextNode(latestData.change +" (");
+				chng.appendChild(txt);
+				
+			txt = document.createTextNode(latestData.change_percent + ")%");
+			chng.appendChild(txt);
+			
+			// ------------------------------------------------
+			
+			console.log(latestData.market_status);
+			console.log(latestData.market_status == "Closed");
+			
+			if(latestData.market_status != "Closed"){
+				txt =  document.createTextNode(latestData.bid_size);
+				bs.appendChild(txt);
+				
+				
+				txt = document.createTextNode(latestData.mid_price);
+				mid.appendChild(txt);
+				
+				txt = document.createTextNode(latestData.ask_price);
+				ap.appendChild(txt);
+				
+				txt =  document.createTextNode(latestData.bid_price);
+				bp.appendChild(txt);
+				
+				txt = document.createTextNode(latestData.ask_size);
+				as.appendChild(txt);
+				
+				txt = document.createTextNode(" is " + latestData.market_status);
+				market.appendChild(txt);
+			}
+			
+			txt = document.createTextNode(" " + latestData.market_status + " on " + latestData.date_timestamp);
+			market.appendChild(txt);
+			
+			txt = document.createTextNode(latestData.current_timestamp);
+			cur_ts.appendChild(txt);
+			
+			
         }
 	})
         }
