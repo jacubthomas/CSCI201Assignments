@@ -94,3 +94,11 @@ h3{
 #master .columns{
 	margin-bottom:0 !important;
 }
+#master .star{
+	font-family: FontAwesome;
+	font-size: 2em;
+	content: "\f005";
+	display: inline-block;
+	border:none;
+	background-color:white;
+}

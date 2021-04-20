@@ -1,3 +1,16 @@
+function favoritehover(){
+	let star = document.getElementById("star");
+	star.classList.remove("fa-star-o");
+	star.classList.add("fa-star");
+	star.style.color="#6100FF";
+}
+function favoriteleave(){
+	let star = document.getElementById("star");
+	star.classList.remove("fa-star");
+	star.classList.add("fa-star-o");
+	star.style.color="black";
+}
+
 function searchComp(){
 	var ticker = document.getElementById("searchticker").value;
 	if(ticker == null){
@@ -148,5 +161,24 @@ function searchComp(){
 	})
         }
 	})
+}
+
+function favorited(){
+
+	let username = localStorage.getItem("Username");
+	let ticker = document.getElementById("searchticker").value;
 	
+	if(username != null){
+		fetch('http://localhost:8080/jharring_CSCI201_Assignment4/favorite?' + new URLSearchParams({
+					Username: username,
+					Ticker: ticker
+			}), {
+				method: "GET"
+			})
+		    .then(response => response.text())
+		    .then(response => {
+			})
+	} else {
+		alert("You must be logged in to favorite a ticker.")
+	}
 }

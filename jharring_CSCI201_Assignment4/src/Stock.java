@@ -59,5 +59,9 @@ public class Stock {
 			System.out.println(jpe.getMessage());
 		}
 	}
+	public Stock(Double prev_close, Double last) {
+		this.prev_close = prev_close;
+		this.last = last;
+	}
 
 }

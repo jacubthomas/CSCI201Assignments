@@ -28,4 +28,11 @@ public class Comp {
 			System.out.println(jpe.getMessage());
 		}
 	}
+	public Comp(String ticker, String name, int CID) {
+		this.ticker = ticker;
+		this.name = name;
+		this.CID = CID;
+		this.startDate = null;
+		this.exchangeCode = null;
+	}
 }
