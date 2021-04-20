@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,14 +49,25 @@ public class Favorite extends HttpServlet {
 				CID = rs.getInt("CID");
 				UID = rs.getInt("UID");
 			}
-			
-			query = "INSERT into Favorites (UID, CID)" +
-							" values (?, ?)";
-			ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			query = "SELECT * from Favorites WHERE UID = ? AND CID = ?";
+			ps = conn.prepareStatement(query);
 			ps.setInt(1, UID);
 			ps.setInt(2, CID);
-			ps.execute();		
-			rs = ps.getGeneratedKeys();
+			rs = ps.executeQuery();		
+			boolean already_favorited = false;
+			while(rs.next()) {
+				already_favorited = true;
+			}
+			
+			if(!already_favorited) {
+				query = "INSERT into Favorites (UID, CID)" +
+								" values (?, ?)";
+				ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+				ps.setInt(1, UID);
+				ps.setInt(2, CID);
+				ps.execute();		
+				rs = ps.getGeneratedKeys();
+			}
 		}catch(SQLException sqle) {
 			System.out.println ("SQLException: " + sqle.getMessage());
 		}finally {
