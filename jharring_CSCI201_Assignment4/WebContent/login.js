@@ -20,6 +20,7 @@ function login(){
             var userData = JSON.parse(response) 
             console.log(userData)
             localStorage.setItem("Username", userData.Username);
+            localStorage.setItem("UID", userData.UID);
             window.location.href = "index.html";
         }
 	})

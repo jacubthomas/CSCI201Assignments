@@ -45,7 +45,8 @@ public class login extends HttpServlet {
 			response.setContentType("application/json");
 			if(rs.next()) {
 				out.print("{");
-				out.print("\"Username\":" + "\"" + rs.getString("Username") + "\"");
+				out.print("\"Username\":" + "\"" + rs.getString("Username") + "\",");
+				out.println("\"UID\":" + rs.getInt("UID"));
 				out.print("}");
 				out.flush();
 			}else {

@@ -51,9 +51,19 @@ CID INT NOT NULL,
 
 SELECT * FROM Company;
 SELECT * FROM User;
+SELECT * FROM Favorites;
 
-SELECT * FROM Company
-WHERE Ticker = '"AAPL"';
+SELECT CID, UID FROM Company, User
+WHERE Ticker = '"AAPL"' AND Username = 'jacubthomas';
+
+SELECT * FROM Favorites
+WHERE UID = 2 AND CID =  6;
+
+SELECT UID FROM User
+WHERE Username = 'jacubthomas';
+
+SELECT * FROM  Favorites
+WHERE UID = 2;
 
 SELECT * FROM Stock;
 SELECT * FROM Favorites;
@@ -66,5 +76,7 @@ VALUES ('test', '123', 'test@gmail.com', 50000.00, 50000.00);
 INSERT INTO Company (Ticker, CompanyName, ExchangeCode, StartDate, Description_)
 VALUES ('test', '123', 'had', 'h', 'oiuhasoih');
 
-DELETE FROM Company
-WHERE CID =13;
+DELETE FROM Favorites
+WHERE FID =2;
+
+SELECT Balance, 

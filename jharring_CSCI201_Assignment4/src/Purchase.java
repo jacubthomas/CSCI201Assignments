@@ -13,16 +13,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet("/purchase")
+public class Purchase extends HttpServlet {
 
-@WebServlet("/favorite")
-public class Favorite extends HttpServlet {
-
-	private static final long serialVersionUID = 6;
+	private static final long serialVersionUID =8;
 
 	@SuppressWarnings("resource")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("Username");
 		String ticker = "\"" + request.getParameter("Ticker") + "\"";
+		String quant = request.getParameter("Quantity");
+		String cst = request.getParameter("Cost");
+		int quantity = Integer.parseInt(quant);
+		double cost = Double.parseDouble(cst);
+		double total = cost * quantity;
 		PrintWriter out = response.getWriter();
 		
 		try {
@@ -37,35 +41,46 @@ public class Favorite extends HttpServlet {
 		ResultSet rs = null;
 		try {	
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Assignment4?user=root&password=root");
-			String query = "SELECT CID, UID from Company, User WHERE Ticker = ? AND Username = ?";
+			String query = "SELECT UID, Balance, CID from User, Company WHERE Username = ? AND Ticker = ?";
 			ps = conn.prepareStatement(query);
-			ps.setString(1, ticker);
-			ps.setString(2, username);
-			rs = ps.executeQuery();		
-			int CID = -1;
+			ps.setString(1, username);
+			ps.setString(2, ticker);
+			rs = ps.executeQuery();	
 			int UID = -1;
+			int CID = -1;
+			double balance = -1;
 			if(rs.next()) {
-				CID = rs.getInt("CID");
-				UID = rs.getInt("UID");
+				UID =  rs.getInt("UID");
+				CID =  rs.getInt("CID");
+				balance = rs.getDouble("Balance");
 			}
-			query = "SELECT * from Favorites WHERE UID = ? AND CID = ?";
-			ps = conn.prepareStatement(query);
-			ps.setInt(1, UID);
-			ps.setInt(2, CID);
-			rs = ps.executeQuery();		
-			boolean already_favorited = false;
-			while(rs.next()) {
-				already_favorited = true;
-			}
-			
-			if(!already_favorited) {
-				query = "INSERT into Favorites (UID, CID)" +
-								" values (?, ?)";
+			if(balance >= total) {
+				query = "INSERT INTO Transactions (UID, CID, Quantity, Cost)" +
+						" values(?, ?, ?, ?)";
 				ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 				ps.setInt(1, UID);
 				ps.setInt(2, CID);
+				ps.setInt(3, quantity);
+				ps.setDouble(4, cost);
 				ps.execute();		
 				rs = ps.getGeneratedKeys();
+				out.println("Successful purchase of " +  quantity + " stocks from " + ticker +
+						" at " + cost + " for a grand total of " + total);
+				out.flush();
+				out.close();
+				
+				double remaining_balance = balance - total;
+				query = "UPDATE User SET Balance = ? WHERE UID = ?";
+				ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+				ps.setDouble(1, remaining_balance);
+				ps.setInt(2, UID);
+				ps.execute();		
+				rs = ps.getGeneratedKeys();
+			}
+			else {
+				out.println("Not enough balance.");
+				out.flush();
+				out.close();
 			}
 		}catch(SQLException sqle) {
 			System.out.println ("SQLException: " + sqle.getMessage());
@@ -88,4 +103,5 @@ public class Favorite extends HttpServlet {
 			}
 		}
 	}
+
 }

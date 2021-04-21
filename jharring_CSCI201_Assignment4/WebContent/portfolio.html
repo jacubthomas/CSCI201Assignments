@@ -51,84 +51,28 @@
 	</nav>
 	<div id="master" class="container">
 		<div class="columns">
-			<div class="column is-2"></div>
-			<h3 class="column is-centered">My Portfolio</h3>
+			<div class="column is-1"></div>
+			<h3 class="column is-centered"><strong>My Portfolio</strong></h3>
 			<div class="column"></div>
 		</div>
 		<div class="columns">
-			<div class="column is-2" style="margin:0%; margin-left:3%;"></div>
-			<p class="column is-centered" style="padding:0%;">Cash Balance: ...</p>
+			<div class="column is-1" style="margin-left:3%;"></div>
+			<strong class="column is-centered" style="padding:4px;">Cash Balance: </strong><span id="cb"></span>
 			<div class="column"></div>
 		</div>
 		<div class="columns">
-			<div class="column is-2" style="margin:0%; margin-left:3%; margin-bottom:3%;"></div>
-			<p class="column is-centered" style="padding:0%;">Total Account Value: ...</p>
+			<div class="column is-1" style="margin-left:3%; margin-bottom:3%;"></div>
+			<strong class="column is-centered" style="padding:4px;">Total Account Value: </strong><span id="tav"></span>
 			<div class="column"></div>
 		</div>
 		<div class="columns">
-			<div class="column is-2" style="margin:0%;"></div>
-			<div class="table-container column">
-				<table class="table is-fullwidth is-bordered is-striped">
-					<thead> 
-						<tr>
-						<th><span style="font-size:Large; font-weight:600;">AAPL</span> Apple Inc.</th>
-						</tr>
-					</thead>
-					<tbody> 
-						<tr>
-							<td>
-								<div class="columns">
-									<div class="column is-one-fourth">Quantity:</div>
-									<div class="column is-one-fourth">Change:</div>
-								</div>
-								<div class="columns">
-									<div class="column is-one-fourth">Avg. Cost / Share:</div>
-									<div class="column is-one-fourth">Current Price:</div>
-								</div>
-								<div class="columns">
-									<div class="column is-one-fourth">Total Cost:</div>
-									<div class="column is-one-fourth">Market Value:</div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-					<tfoot>
-						<tr class="override">
-							<td class="box has-text-centered" style="box-shadow:none; background-color:#F0F0F0; border-radius: 0px;"> 
-								<div class="columns">
-									<div class="column"></div>
-									<div class="column">Quantity <input type="number" id="quantity" name="quantity" min="1" max="10000"></div>
-									<div class="column"></div>
-								</div>
-								<div class="columns">
-									<div class="column"></div>
-									<div class="column is-4 control">
-										<label class="radio">
-										<input type="radio" name="buy">
-										   Buy
-										  </label>
-										  <label class="radio">
-										    <input type="radio" name="sell">
-										    Sell
-										  </label>
-										</div>
-									<div class="column"></div>
-								</div>
-								<div class="columns">
-									<div class="column"></div>
-									<div class="column">
-										<button type="submit" class="is-light">Submit</button>
-									</div>
-									<div class="column"></div>
-								</div>
-							</td>
-						</tr>
-					</tfoot>
-				</table>
+			<div class="column is-1" style="margin:0%;"></div>
+			<div id="user_portfolio" class="table-container column">
 			</div>
-			<div class="column is-2"></div>
+			<div class="column is-1"></div>
 		</div>
-	</div>
+	</div> -->
 	<script type="text/javascript" src="navbar.js"></script>
+	<script type="text/javascript" src="portfolio.js"></script>
 </body>
 </html>

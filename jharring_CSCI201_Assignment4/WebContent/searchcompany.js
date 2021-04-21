@@ -182,3 +182,27 @@ function favorited(){
 		alert("You must be logged in to favorite a ticker.")
 	}
 }
+
+function purchase(){
+	let username = localStorage.getItem("Username");
+	let ticker = document.getElementById("result_ticker").innerText;
+	let quantity = document.getElementById("buy_quantity").value;
+	let cost = document.getElementById("request_last").innerText;
+	console.log(username);
+	console.log(ticker);
+	console.log(quantity);
+	console.log(cost);
+	fetch('http://localhost:8080/jharring_CSCI201_Assignment4/purchase?' + new URLSearchParams({
+					Username: username,
+					Ticker: ticker,
+					Quantity: quantity,
+					Cost: cost
+			}), {
+				method: "GET"
+			})
+		    .then(response => response.text())
+		    .then(response => {
+            	alert(response)
+        	})
+
+}

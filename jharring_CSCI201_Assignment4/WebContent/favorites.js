@@ -1,5 +1,3 @@
-
-
 let username = localStorage.getItem("Username");
 
 fetch('http://localhost:8080/jharring_CSCI201_Assignment4/loadfavorites?' + new URLSearchParams({
@@ -12,7 +10,6 @@ fetch('http://localhost:8080/jharring_CSCI201_Assignment4/loadfavorites?' + new 
 		var faveData = JSON.parse(response);
         console.log(faveData);
 		let divvy = document.getElementById("user_faves");
-		let txt;
 		for(var i=0; i<faveData.length; i++){
 			if(faveData[i].isGreen){
 				 divvy.innerHTML += 

@@ -93,8 +93,8 @@
 				<div class="columns">
 					<div class="column is-pulled-left form-group level">
 						<label class="level-item level-left">Quantity: 
-							<input type="number" name="quantity">
-						<button class="button is-success">Buy</button>
+							<input id="buy_quantity" type="number" name="quantity" min="1">
+						<button id="buy_btn" onclick="purchase();" class="button is-success">Buy</button>
 						</label>
 					</div>
 				</div>
