@@ -1,5 +1,29 @@
 let UID = localStorage.getItem("UID");
 
+function port_transaction(CID, i){
+	let radb = document.getElementById("rad_b_"+i);
+	let rads = document.getElementById("rad_s_"+i);
+	
+	if(radb.checked){
+		console.log("radb"+i);
+		fetch('http://localhost:8080/jharring_CSCI201_Assignment4/balance?' + new URLSearchParams({
+			UID: UID
+		}), {
+			method: "GET"
+		})
+		.then(response => response.text())
+		.then(response => {
+			let userFinance = JSON.parse(response);
+			document.getElementById("cb").innerText = userFinance.Balance;
+			document.getElementById("tav").innerText = userFinance.AccountValue;
+		})
+	}
+	else if(rads.checked){
+		console.log("rads"+i);
+		rad = "sell";
+	}
+}
+
 fetch('http://localhost:8080/jharring_CSCI201_Assignment4/balance?' + new URLSearchParams({
 			UID: UID
 	}), {
@@ -108,11 +132,11 @@ fetch('http://localhost:8080/jharring_CSCI201_Assignment4/portfolio?' + new URLS
 										"<div class=\"column\"></div>" +
 										"<div class=\"column is-4 control form-group\">" +
 											"<label class=\"radio\">" +
-												"<input type=\"radio\" name=\"radio\" value=\"buy\">" +
+												"<input id=\"rad_b_" + i + "\" type=\"radio\" name=\"radio\" value=\"buy\">" +
 													"Buy" +
 											"</label>" +
 											"<label class=\"radio\">" +
-										   		"<input type=\"radio\" name=\"radio\" value=\"sell\">" +
+										   		"<input id=\"rad_s_" + i + "\" type=\"radio\" name=\"radio\" value=\"sell\">" +
 											    	"Sell" +
 											  "</label>" +
 										"</div>" +	
@@ -121,7 +145,7 @@ fetch('http://localhost:8080/jharring_CSCI201_Assignment4/portfolio?' + new URLS
 									"<div class=\"columns\">" +
 										"<div class=\"column\"></div>" +
 										"<div class=\"column\">"+
-											"<button type=\"submit\" class=\"is-light\">Submit</button>" +
+											"<button id=\"submit_btn_" + i + "\" type=\"button\" class=\"is-light\">Submit</button>" +
 										"</div>" +
 										"<div class=\"column\"></div>" +
 									"</div>" +
@@ -129,6 +153,14 @@ fetch('http://localhost:8080/jharring_CSCI201_Assignment4/portfolio?' + new URLS
 							"</tr>" +
 						"</tfoot>" +
 					"</table>";		
-						
+			}
+			 for(var i=0; i<response.length; i++){
+			 	let index = i;
+				let temp = document.getElementById("submit_btn_"+index);		
+				console.log(temp);
+				console.log("i: " + index);
+				let cid = response[index].CID
+				temp.addEventListener("click", function(){ port_transaction(cid, index)});
 			}
 		})
+
