@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -79,6 +78,7 @@ public class Portfolio extends HttpServlet {
 					transact.company = transact.company.substring(1, transact.company.length()-1);
 					transact.update2();
 					count++;
+					System.err.println(transact.ticker);
 				}
 			}
 			response.setContentType("application/json");

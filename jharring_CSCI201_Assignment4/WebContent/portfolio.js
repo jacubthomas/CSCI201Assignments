@@ -4,14 +4,14 @@ function port_transaction(i){
 	let radb = document.getElementById("rad_b_"+i);
 	let rads = document.getElementById("rad_s_"+i);
 	console.log(document.getElementById("ticker"+i).innerText);
-	console.log(document.getElementById("quant"+i).innerText);
+	console.log(document.getElementById("tran_quant"+i).innerText);
 	console.log(document.getElementById("last"+i).innerText);
 	if(radb.checked){
 		console.log("radb"+i);
 		fetch('http://localhost:8080/jharring_CSCI201_Assignment4/purchase?' + new URLSearchParams({
 			Username: localStorage.getItem("Username"),
 			Ticker : document.getElementById("ticker"+i).innerText,
-		 	Quantity: document.getElementById("quant"+i).innerText,
+		 	Quantity: document.getElementById("tran_quant"+i).value,
 			Cost: document.getElementById("last"+i).innerText
 		}), {
 			method: "GET"
@@ -23,7 +23,16 @@ function port_transaction(i){
 	}
 	else if(rads.checked){
 		console.log("rads"+i);
-		rad = "sell";
+		fetch('http://localhost:8080/jharring_CSCI201_Assignment4/sale?' + new URLSearchParams({
+			UID: UID,
+			Ticker: document.getElementById("ticker"+i).innerText,
+			Quantity: document.getElementById("tran_quant"+i).value
+		}), {
+			method: "GET"
+		})
+		    .then(response => response.text())
+		    .then(response => {
+		})
 	}
 }
 
@@ -127,7 +136,7 @@ fetch('http://localhost:8080/jharring_CSCI201_Assignment4/portfolio?' + new URLS
 										"<div class=\"column\"></div>" +
 										"<div class=\"column\">" +
 											"Quantity" +
-											 "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\""+ response[i].quantity + "\">" +
+											 "<input type=\"number\" id=\"tran_quant" + i + "\" name=\"quantity\" min=\"1\" max=\""+ response[i].quantity + "\">" +
 										"</div>" +
 										"<div class=\"column\"></div>" +
 									"</div>" +

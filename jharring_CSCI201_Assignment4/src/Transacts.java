@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Transacts {
 	public int UID;
+	public int TID;
 	public int CID;
 	public int quantity;
 	public Double change;
@@ -19,6 +20,11 @@ public class Transacts {
 		this.CID = CID;
 		quants.add(quantity);
 		costs.add(cost);
+	}
+	public Transacts(int CID, int TID, int quantity) {
+		this.CID = CID;
+		this.TID = TID;
+		this.quantity = quantity;
 	}
 	
 	public void update1() {
