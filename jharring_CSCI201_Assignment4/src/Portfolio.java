@@ -75,10 +75,8 @@ public class Portfolio extends HttpServlet {
 				if(rs.next()) {
 					transact.company = rs.getString("CompanyName");
 					transact.ticker = rs.getString("Ticker");
-					System.err.println(transact.ticker);
 					transact.ticker = transact.ticker.substring(1, transact.ticker.length()-1);
 					transact.company = transact.company.substring(1, transact.company.length()-1);
-					System.err.println(transact.ticker);
 					transact.update2();
 					count++;
 				}

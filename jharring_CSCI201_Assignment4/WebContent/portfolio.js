@@ -1,21 +1,24 @@
 let UID = localStorage.getItem("UID");
 
-function port_transaction(CID, i){
+function port_transaction(i){
 	let radb = document.getElementById("rad_b_"+i);
 	let rads = document.getElementById("rad_s_"+i);
-	
+	console.log(document.getElementById("ticker"+i).innerText);
+	console.log(document.getElementById("quant"+i).innerText);
+	console.log(document.getElementById("last"+i).innerText);
 	if(radb.checked){
 		console.log("radb"+i);
-		fetch('http://localhost:8080/jharring_CSCI201_Assignment4/balance?' + new URLSearchParams({
-			UID: UID
+		fetch('http://localhost:8080/jharring_CSCI201_Assignment4/purchase?' + new URLSearchParams({
+			Username: localStorage.getItem("Username"),
+			Ticker : document.getElementById("ticker"+i).innerText,
+		 	Quantity: document.getElementById("quant"+i).innerText,
+			Cost: document.getElementById("last"+i).innerText
 		}), {
 			method: "GET"
 		})
 		.then(response => response.text())
 		.then(response => {
-			let userFinance = JSON.parse(response);
-			document.getElementById("cb").innerText = userFinance.Balance;
-			document.getElementById("tav").innerText = userFinance.AccountValue;
+			window.location.href='portfolio.html';
 		})
 	}
 	else if(rads.checked){
@@ -52,7 +55,7 @@ fetch('http://localhost:8080/jharring_CSCI201_Assignment4/portfolio?' + new URLS
 						"<thead>" +
 							"<tr>" +
 								"<th>" +
-									"<span style=\"font-size:Large; font-weight:600; margin-right:10px;\">" + response[i].ticker+ "</span>" +
+									"<span id=\"ticker" + i + "\" style=\"font-size:Large; font-weight:600; margin-right:10px;\">" + response[i].ticker+ "</span>" +
 									"<span style=\"color:grey;\">" + response[i].company + "<span>" + 
 								"</th>" +
 							"</tr>" +
@@ -65,7 +68,7 @@ fetch('http://localhost:8080/jharring_CSCI201_Assignment4/portfolio?' + new URLS
 										 	"<strong style=\"float:left\">" +
 										 	 	"Quantity:" +
 									 	 	"</strong>" +
-									 	 	"<span style=\"float:right; margin-right:20px;\">" +
+									 	 	"<span id=\"quant" + i + "\" style=\"float:right; margin-right:20px;\">" +
 									 	 		response[i].quantity +
 											"</span>" +
 										"</div>" +
@@ -91,7 +94,7 @@ fetch('http://localhost:8080/jharring_CSCI201_Assignment4/portfolio?' + new URLS
 											"<strong style=\"float:left;\">" +
 												"Current Price:" +
 											"</strong>" +
-											"<span style=\"float:right; margin-right:20px;\">" +
+											"<span id=\"last" + i + "\" style=\"float:right; margin-right:20px;\">" +
 												response[i].current +
 											"</span>" +
 										"</div>" +
@@ -159,8 +162,7 @@ fetch('http://localhost:8080/jharring_CSCI201_Assignment4/portfolio?' + new URLS
 				let temp = document.getElementById("submit_btn_"+index);		
 				console.log(temp);
 				console.log("i: " + index);
-				let cid = response[index].CID
-				temp.addEventListener("click", function(){ port_transaction(cid, index)});
+				temp.addEventListener("click", function(){ port_transaction(index)});
 			}
 		})
 
